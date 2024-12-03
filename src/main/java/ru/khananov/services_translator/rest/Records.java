@@ -13,7 +13,4 @@ public class Records {
     public record Translation(String detectedLanguageCode, String text) {
     }
   }
-
-  public record TranslateInput(String targetLanguageCode, String texts) {
-  }
 }

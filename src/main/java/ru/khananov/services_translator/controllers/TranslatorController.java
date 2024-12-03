@@ -17,7 +17,7 @@ public class TranslatorController {
   }
 
   @PostMapping("/translate")
-  public String hello(@RequestBody Records.TranslateInput translateInput) {
-    return translateService.translate(translateInput);
+  public String translate(@RequestBody String text) {
+    return translateService.translate(text);
   }
 }
