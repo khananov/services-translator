@@ -13,7 +13,7 @@ import java.util.Collections;
 
 @Service
 public class TranslateServiceImpl implements TranslateService {
-  private static final String YA_API_TRANSLATE_URL = "https://translate.api.cloud.yandex.net/translate/v2/translate";
+  private static final String YA_TRANSLATE_API_URL = "https://translate.api.cloud.yandex.net/translate/v2/translate";
   private final RestTemplate restTemplate;
 
   @Value("${ya.api.folder-id}")
@@ -35,7 +35,7 @@ public class TranslateServiceImpl implements TranslateService {
     headers.set(HttpHeaders.AUTHORIZATION, "Api-Key " + apiKey);
     Records.TranslateRequest request = new Records.TranslateRequest(targetLanguage, text, folderId);
     HttpEntity<Records.TranslateRequest> entity = new HttpEntity<>(request, headers);
-    Records.TranslateResponse input = restTemplate.postForObject(YA_API_TRANSLATE_URL, entity, Records.TranslateResponse.class);
+    Records.TranslateResponse input = restTemplate.postForObject(YA_TRANSLATE_API_URL, entity, Records.TranslateResponse.class);
     if (input == null || input.translations() == null || input.translations().isEmpty()) return "Ошибка перевода";
     return input.translations().getFirst().text();
   }
